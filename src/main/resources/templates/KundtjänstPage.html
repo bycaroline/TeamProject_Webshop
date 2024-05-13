@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Kuntjänst</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon"
+          href="../../../../../startbootstrap-shop-homepage-gh-pages/assets/favicon.ico"/>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../../../../startbootstrap-shop-homepage-gh-pages/css/styles.css" rel="stylesheet"/>
+    <style>
+        .logo-img {
+            height: auto;
+            width: 15%;
+            /* Procentuell storlek för att göra den responsiv */
+            position: absolute;
+            /* Placera bilden framför navigationsmenyn */
+            top: 15px;
+            /* Justera vertikal position */
+            left: 15px;
+            /* Justera horisontell position */
+        }
+
+        .navbar-brand {
+            padding-left: 12%;
+            /* Öka vänstermarginalen för navigationsmärket för att undvika att den täcker bilden */
+        }
+
+        @media (max-width: 992px) {
+            .logo-img {
+                width: 30%;
+            }
+
+            .navbar-brand {
+                padding-left: 40%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-img {
+                width: 40%;
+            }
+
+            .navbar-brand {
+                padding-left: 50%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-img {
+                width: 50%;
+            }
+
+            .navbar-brand {
+                padding-left: 60%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- Navigation-->
+<div th:replace="NavBar.html"></div>
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Garn Galore</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Trasselfritt garn och kreativa knutar hos GarnGalore AB.</p>
+        </div>
+    </div>
+</header>
+
+<!-- Section for displaying contact information -->
+<section class="py-5">
+    <div class="container-fluid px-4 px-lg-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="mb-4">
+                    Har du frågor eller funderingar? Kontakta vår kundtjänst!
+                </h2>
+                <p class="mb-3">
+                    <strong>Telefon:</strong> 08-123 45 67
+                </p>
+                <p class="mb-3">
+                    <strong>E-post:</strong>
+                    <a href="mailto:contact@garngaloreab.se" class="text-decoration-none text-dark">contact@garngaloreab.se</a>
+                </p>
+                <p class="mb-3">
+                    <strong>Adress:</strong> Garnvägen 1, 123 45 Stockholm
+                </p>
+            </div>
+
+            <div class="col-lg-8">
+                <h2 class="mb-4">Frågor och svar om ditt köp</h2>
+
+                <div class="mb-4">
+                    <h5>Hur kan jag betala?</h5>
+                    <p>Du kan betala med Swish, Klarna eller via handarbeten.</p>
+                </div>
+
+                <div class="mb-4">
+                    <h5>Hur levererar ni varorna?</h5>
+                    <p>
+                        Vi skickar dina varor spårbart med PostNord och levererar för närvarande endast inom Sverige. Vi strävar efter att skicka ditt paket inom 3 arbetsdagar, men vi tar inte ansvar för eventuella förseningar orsakade av PostNord eller andra omständigheter utanför vår kontroll.
+                        Frakten kostar 50 kr för leverans.
+                    </p>
+                </div>
+
+                <div class="mb-4">
+                    <h5>Kan jag returnera mina varor om jag ångrar mig?</h5>
+                    <p>
+                        Du har 14 dagars ångerrätt vid köp på distans. Du ansvarar för returfrakten, och varorna måste vara oanvända och i ursprungligt skick.
+                    </p>
+                </div>
+
+                <div class="mb-4">
+                    <h5>Vad händer om jag inte hämtar ut mitt paket?</h5>
+                    <p>
+                        Om du inte hämtar ditt paket, returneras det till oss och du debiteras en returkostnad på 150 kr.
+                    </p>
+                </div>
+
+                <div class="mb-4">
+                    <h5>Vad gör jag om det är något fel på min vara?</h5>
+                    <p>
+                        Kontakta oss via e-post och förklara felet med din vara. Om din reklamation godkänns, står vi för fraktkostnaden. Du får återbetalning eller en tillgodohavande summa för framtida köp.
+                    </p>
+                </div>
+
+                <div class="mb-4">
+                    <h5>Hur får jag personlig hjälp med min beställning?</h5>
+                    <p>
+                        Skicka oss ett e-postmeddelande och berätta vad du behöver hjälp med. Vi kan ge tips om garn till olika mönster, hjälpa med färgval och mycket annat via e-post, sms eller videosamtal.
+                    </p>
+                </div>
+
+                <div class="mb-4">
+                    <h5>Kan ni beställa garn som ni inte har på lager?</h5>
+                    <p>
+                        Det beror på leverantör och mängd. Fråga oss gärna via e-post!
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Garn Galore AB 2024</p>
+    </div>
+</footer>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="../../../../../startbootstrap-shop-homepage-gh-pages/js/scripts.js"></script>
+</body>
+
+</html>

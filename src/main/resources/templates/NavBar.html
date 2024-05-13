@@ -1,0 +1,124 @@
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="#!">Garn Galore</a>
+        <img src="../images/logga.png" class="logo-img" alt="Logo">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <!-- Länkar mellan sidorna -->
+                <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/}">Hem</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/products}">Produkter</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/info}">Info</a></li>
+                <!-- Mer dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMore" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">Mer</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMore">
+                        <li><a class="dropdown-item" th:href="@{/registerUser}">Registrera användare</a></li>
+                        <li><a class="dropdown-item" th:href="@{/customerService}">Kundtjänst</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Visa "Logga in" eller "Logga ut" knapp beroende på användarens inloggningstillstånd -->
+            <div th:if="${loggedIn}">
+                <!-- Logga ut knapp -->
+                <a th:href="@{/logout}" class="btn btn-outline-dark me-3">
+                    Logga ut
+                </a>
+            </div>
+            <div th:unless="${loggedIn}">
+                <!-- Logga in knapp -->
+                <a th:href="@{/login}" class="btn btn-outline-dark me-3">
+                    Logga in
+                </a>
+            </div>
+
+            <!-- Sökfunktion -->
+            <form class="search-form d-flex me-3" th:action="@{/search}" method="get">
+                <input class="form-control search-input me-2" type="search" placeholder="Sök" aria-label="Search"
+                       name="keyword">
+                <button class="btn btn-outline-dark" type="submit">Sök</button>
+            </form>
+            <!-- Min sida länk -->
+            <form class="d-flex">
+                <a th:href="@{/myPage}" class="btn btn-outline-dark me-3">
+                    Min sida
+                </a>
+                <a id="kundvagnBtn" class="btn btn-outline-dark">
+                    <i class="bi-cart-fill me-1"></i>
+                    Kundvagn
+                    <span id="cartItemCount" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                </a>
+            </form>
+        </div>
+    </div>
+    <script>
+        //Gå till kundvagn
+        document.getElementById("kundvagnBtn").addEventListener("click", function () {
+            fetch('/startCartSession', {
+                method: 'POST'
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json(); // return JSON response from server
+                })
+                .then(data => {
+                    window.location.href = "/cart"; // Redirect to the cart page
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                });
+        });
+
+        //Uppdatera antalet produkter i kundvagnen
+        function updateCartItemCount() {
+            fetch('/getCartItemCount') // Anropar en endpoint på servern för att hämta antalet produkter i kundvagnen
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json(); // return JSON response from server
+                })
+                .then(data => {
+                    // Uppdatera antalet produkter i kundvagnen i HTML-elementet
+                    document.getElementById('cartItemCount').textContent = data.cartItemCount;
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                });
+        }
+
+        //Lyssna på klickhändelser för kundvagnsknappen och uppdatera antalet produkter i kundvagnen
+        document.getElementById("kundvagnBtn").addEventListener("click", function () {
+            fetch('/startCartSession', {
+                method: 'POST'
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json(); // return JSON response from server
+                })
+                .then(data => {
+                    // Uppdatera antalet produkter i kundvagnen efter att sessionen har startats
+                    updateCartItemCount();
+                    window.location.href = "/cart"; // Redirect to the cart page
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                });
+        });
+
+        // Uppdatera antalet produkter i kundvagnen när sidan laddas
+        document.addEventListener("DOMContentLoaded", function () {
+            updateCartItemCount();
+        });
+
+    </script>
+</nav>

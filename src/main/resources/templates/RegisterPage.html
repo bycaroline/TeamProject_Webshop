@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Registrera användare</title>
+    <link rel="icon" type="image/x-icon" href="../images/logga.png"/>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../../../../startbootstrap-shop-homepage-gh-pages/css/styles.css" rel="stylesheet" />
+    <style>
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 300px);
+        }
+
+        .form-wrapper {
+            width: 50%;
+            padding: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-wrapper h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-wrapper form {
+            text-align: center;
+        }
+
+        .form-wrapper form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .form-wrapper form input {
+            width: calc(100% - 22px);
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+
+        .form-wrapper form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0d6efd;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logo-img {
+            height: auto;
+            width: 15%; /* Procentuell storlek för att göra den responsiv */
+            position: absolute; /* Placera bilden framför navigationsmenyn */
+            top: 15px; /* Justera vertikal position */
+            left: 15px; /* Justera horisontell position */
+        }
+
+        .navbar-brand {
+            padding-left: 12%; /* Öka vänstermarginalen för navigationsmärket för att undvika att den täcker bilden */
+        }
+
+        @media (max-width: 992px) {
+            .logo-img {
+                width: 30%;
+            }
+
+            .navbar-brand {
+                padding-left: 40%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-img {
+                width: 40%;
+            }
+
+            .navbar-brand {
+                padding-left: 50%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-img {
+                width: 50%;
+            }
+
+            .navbar-brand {
+                padding-left: 60%;
+            }
+
+            .form-wrapper {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation-->
+<div th:replace="NavBar.html"></div>
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Garn Galore</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Trasselfritt garn och kreativa knutar hos GarnGalore AB.</p>
+        </div>
+    </div>
+</header>
+
+<!-- Formulär -->
+<section class="py-5">
+    <div class="form-container">
+        <div class="form-wrapper">
+            <h1>Registrera användare</h1>
+            <!-- Nytt felmeddelande för redan existerande e-postadress -->
+            <div th:if="${error}" class="alert alert-danger" role="alert">
+                <span th:text="${error}"></span>
+            </div>
+            <!-- Nytt meddelande för lyckad registrering -->
+            <div th:if="${success}" class="alert alert-success" role="alert">
+                <span th:text="${success}"></span>
+            </div>
+            <form action="/registerUser" th:action="@{/registerUser}" th:object="${user}" method="post">
+                <label for="firstName">Förnamn:*</label>
+                <input type="text" id="firstName" name="firstName" required />
+                <!-- Textinmatningsfält för förnamn -->
+
+                <br/>
+
+                <label for="lastName">Efternamn:*</label>
+                <input type="text" id="lastName" name="lastName" required />
+                <!-- Textinmatningsfält för efternamn -->
+
+                <br/>
+
+                <label for="email">E-post:*</label>
+                <input type="email" id="email" name="email" required />
+                <!-- Textinmatningsfält för e-postadress -->
+
+                <br/>
+
+                <label for="password">Lösenord:*</label>
+                <input type="password" id="password" name="password" required />
+                <!-- Lösenordsinmatningsfält -->
+
+                <br/>
+
+                <label for="address">Adress:*</label>
+                <input type="text" id="address" name="address" required />
+                <!-- Textinmatningsfält för adress -->
+
+                <br/>
+
+                <label for="description">Beskrivning:</label>
+                <input type="text" id="description" name="description" />
+                <!-- Textinmatningsfält för beskrivning -->
+
+                <br/>
+
+                <button type="submit">Registrera</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Garn Galore AB 2024</p></div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="../../../../../startbootstrap-shop-homepage-gh-pages/js/scripts.js"></script>
+</body>
+</html>

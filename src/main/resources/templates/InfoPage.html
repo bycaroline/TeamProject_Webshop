@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Info</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../images/logga.png"/>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../../../../startbootstrap-shop-homepage-gh-pages/css/styles.css" rel="stylesheet" />
+    <style>
+        .logo-img {
+            height: auto;
+            width: 15%;
+            /* Procentuell storlek för att göra den responsiv */
+            position: absolute;
+            /* Placera bilden framför navigationsmenyn */
+            top: 15px;
+            /* Justera vertikal position */
+            left: 15px;
+            /* Justera horisontell position */
+        }
+
+        .navbar-brand {
+            padding-left: 12%;
+            /* Öka vänstermarginalen för navigationsmärket för att undvika att den täcker bilden */
+        }
+
+        @media (max-width: 992px) {
+            .logo-img {
+                width: 30%;
+            }
+
+            .navbar-brand {
+                padding-left: 40%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-img {
+                width: 40%;
+            }
+
+            .navbar-brand {
+                padding-left: 50%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-img {
+                width: 50%;
+            }
+
+            .navbar-brand {
+                padding-left: 60%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- Navigation-->
+<div th:replace="NavBar.html"></div>
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Garn Galore</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Trasselfritt garn och kreativa knutar hos GarnGalore AB.</p>
+        </div>
+    </div>
+</header>
+
+<!-- Section for displaying information -->
+<section class="py-5">
+    <div class="container-fluid px-4 px-lg-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="mb-5">
+                    <h3 class="mb-2">Leveransinformation</h3>
+                    <p>
+                        Vi på GarnGalore AB strävar efter att leverera dina beställningar så snabbt och smidigt som möjligt.
+                        Din order skickas via brev inom 3-5 arbetsdagar efter att betalningen har bekräftats.
+                    </p>
+                </div>
+
+                <div class="mb-5">
+                    <h3 class="mb-2">Leveranstid</h3>
+                    <p>
+                        Varorna levereras normalt sett inom 3 arbetsdagar från det att beställningen har behandlats.
+                    </p>
+                </div>
+
+                <div class="mb-5">
+                    <h3 class="mb-2">Porto</h3>
+                    <p>
+                        Porto tillkommer med 50 kr för alla beställningar.
+                        Detta tillägg visas tydligt i din varukorg innan du slutför din beställning.
+                    </p>
+                </div>
+
+                <div class="mb-5">
+                    <h3 class="mb-2">Returpolicy</h3>
+                    <p>
+                        Vi på GarnGalore AB värdesätter din tillfredsställelse med våra produkter. Om du av någon anledning inte är helt nöjd med din vara har du rätt att ångra ditt köp inom 14 dagar från det att du mottagit varan.
+                        För att utnyttja ångerrätten ber vi dig kontakta vår kundtjänst och meddela ditt beslut.
+                        Återbetalning sker inom 14 dagar från det att vi mottagit den returnerade varan. Varan måste returneras i sitt ursprungliga skick och förpackning.
+                    </p>
+                </div>
+
+                <div class="mb-5">
+                    <h3 class="mb-2">Integritetspolicy</h3>
+                    <p>
+                        GarnGalore AB samling och användning av personuppgifter på GarnGaloreAB.com sker i enlighet med gällande lagstiftning om skydd av personuppgifter (även kallad personuppgifter / GDPR).
+                        Det innebär att din information är skyddad av gällande lag.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Garn Galore AB 2024</p>
+    </div>
+</footer>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="../../../../../startbootstrap-shop-homepage-gh-pages/js/scripts.js"></script>
+</body>
+
+</html>

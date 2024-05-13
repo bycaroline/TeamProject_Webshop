@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Produktinformation</title>
+    <link rel="icon" type="image/x-icon" href="../images/logga.png"/>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../../../../startbootstrap-shop-homepage-gh-pages/css/styles.css" rel="stylesheet"/>
+    <style>
+        .logo-img {
+            height: auto;
+            width: 15%;
+            /* Procentuell storlek för att göra den responsiv */
+            position: absolute;
+            /* Placera bilden framför navigationsmenyn */
+            top: 15px;
+            /* Justera vertikal position */
+            left: 15px;
+            /* Justera horisontell position */
+        }
+
+        .navbar-brand {
+            padding-left: 12%;
+            /* Öka vänstermarginalen för navigationsmärket för att undvika att den täcker bilden */
+        }
+
+        @media (max-width: 992px) {
+            .logo-img {
+                width: 30%;
+            }
+
+            .navbar-brand {
+                padding-left: 40%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-img {
+                width: 40%;
+            }
+
+            .navbar-brand {
+                padding-left: 50%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-img {
+                width: 50%;
+            }
+
+            .navbar-brand {
+                padding-left: 60%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navigation-->
+<div th:replace="NavBar.html"></div>
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Garn Galore</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Trasselfritt garn och kreativa knutar hos GarnGalore AB.</p>
+        </div>
+    </div>
+</header>
+
+<!-- Product Information Section -->
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <img th:src="@{${product.bild}}" alt="Produktbild" class="product-img">
+                <!-- Include your product details here using Thymeleaf -->
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.name}">Product Name</h5>
+                    <p class="card-text">
+                        <strong>Pris:</strong> <span th:text="${product.price} + ' kr'">Price</span><br>
+                        <strong>Beskrivning:</strong> <span th:text="${product.description}">Description</span><br>
+                        <strong>Kategori:</strong> <span th:text="${product.category}">Category</span><br>
+                        <strong>Lager:</strong> <span th:text="${product.quantity}">Quantity</span><br>
+                        <strong>Färg:</strong> <span th:text="${product.color}">Color</span><br>
+                        <strong>Id:</strong> <span th:text="${product.id}" id="productId">Id</span>
+                    <div class="col-md-6 mb-3">
+                        <a class="btn btn-dark btn-sm w-100" id="addToCartBtn" href="#">Lägg i kundvagnen</a>
+                    </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+    document.getElementById("addToCartBtn").addEventListener("click", function () {
+        var productId = document.getElementById("productId").textContent;
+        console.log("Product ID:", productId);
+    });
+
+
+    document.getElementById("addToCartBtn").addEventListener("click", function () {
+        var productId = document.getElementById("productId").textContent;
+        fetch('/addToCart/' + productId, {
+            method: 'POST'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // return JSON response from server
+            })
+            .then(data => {
+                window.location.href = "/cart"; // Redirect to the cart page
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+            });
+    });
+
+</script>
+</body>
+
+</html>

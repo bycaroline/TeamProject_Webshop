@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>Kundvagn</title>
+    <link rel="icon" type="image/x-icon" href="../images/logga.png"/>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../../../../startbootstrap-shop-homepage-gh-pages/css/styles.css" rel="stylesheet"/>
+    <style>
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-wrapper {
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-wrapper h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-wrapper form {
+            text-align: center;
+        }
+
+        .form-wrapper form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .form-wrapper form input {
+            width: calc(100% - 22px);
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+
+        .form-wrapper form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0d6efd;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logo-img {
+            height: auto;
+            width: 15%; /* Procentuell storlek för att göra den responsiv */
+            position: absolute; /* Placera bilden framför navigationsmenyn */
+            top: 15px; /* Justera vertikal position */
+            left: 15px; /* Justera horisontell position */
+        }
+
+        .navbar-brand {
+            padding-left: 12%; /* Öka vänstermarginalen för navigationsmärket för att undvika att den täcker bilden */
+        }
+
+        @media (max-width: 992px) {
+            .logo-img {
+                width: 30%;
+            }
+
+            .navbar-brand {
+                padding-left: 40%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-img {
+                width: 40%;
+            }
+
+            .navbar-brand {
+                padding-left: 50%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-img {
+                width: 50%;
+            }
+
+            .navbar-brand {
+                padding-left: 60%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation-->
+<div th:replace="NavBar.html"></div>
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Garn Galore</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Trasselfritt garn och kreativa knutar hos GarnGalore AB.</p>
+        </div>
+    </div>
+</header>
+
+<!-- Här lägger du in ditt innehåll -->
+<!-- Lägg in innehållet här -->
+
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 align-items-center my-5">
+        <div class="col-lg-5">
+            <h1 class="font-weight-light">Kundvagn (${cart.numberOfProducts} antal produkter)</h1>
+            <ul>
+                <li th:each="product : ${cart.productList}">
+                    <span th:text="${product.name + ' - ' + product.price}"></span>
+                    <!--se javascript längre ner på sidan-->
+                    <input type="number" min="1" value="1" id="quantity-${product.id}" placeholder="Ange kvantitet">
+                    <button onclick="updateProductQuantity('${product.id}')">Välj kvantitet</button>
+                    <button onclick="removeProduct('${product.id}')">Ta bort produkt</button>
+                </li>
+            </ul>
+            <p th:if="${cart.productList.size() == 0}">Det finns inga produkter i din kundvagn.</p>
+            <h2 class="font-weight-light">Totalt att betala: ${cart.totalPrice}</h2>
+            <!--            Att gå till betalning visas bara om det finns minst en produkt i kundvagnen-->
+            <th:block th:if="${cart.productList.size() > 0}">
+                <h3><a th:href="@{/PaymentPage}">Klicka här för att gå vidare till betalning</a></h3>
+            </th:block>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Garn Galore AB 2024</p>
+    </div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="../../../../../startbootstrap-shop-homepage-gh-pages/js/scripts.js"></script>
+<script>
+    function removeProduct(productId) {
+        // Skicka en DELETE-förfrågan till backend för att ta bort produkten från kundvagnen
+        fetch('/cart/removeProduct/' + productId, {
+            method: 'DELETE'
+        }).then(response => {
+            if (response.ok) {
+                // Uppdatera sidan efter att produkten har tagits bort
+                location.reload();
+            } else {
+                // Hantera fel här
+                console.error('Kunde inte ta bort produkten');
+            }
+        });
+    }
+
+    function updateProductQuantity(productId) {
+        var quantity = document.getElementById('quantity-' + productId).value;
+
+        // Skicka en PUT-förfrågan till backend för att uppdatera produktens kvantitet i kundvagnen
+        fetch('/cart/' + userId + '/updateProductQuantity/' + productId + '?quantity=' + quantity, {
+            method: 'PUT'
+        }).then(response => {
+            if (response.ok) {
+                // Uppdatera sidan efter att kvantiteten har ändrats
+                location.reload();
+            } else {
+                // Hantera fel här
+                console.error('Kunde inte ändra kvantitet på produkten');
+            }
+        });
+    }
+</script>
+</body>
+</html>

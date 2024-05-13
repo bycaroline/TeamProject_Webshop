@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Betalning</title>
+    <link rel="icon" type="image/x-icon" href="../images/logga.png"/>
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../../../../../startbootstrap-shop-homepage-gh-pages/css/styles.css" rel="stylesheet" />
+    <style>
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-wrapper {
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-wrapper h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-wrapper form {
+            text-align: center;
+        }
+
+        .form-wrapper form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .form-wrapper form input {
+            width: calc(100% - 22px);
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+
+        .form-wrapper form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0d6efd;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .logo-img {
+            height: auto;
+            width: 15%; /* Procentuell storlek för att göra den responsiv */
+            position: absolute; /* Placera bilden framför navigationsmenyn */
+            top: 15px; /* Justera vertikal position */
+            left: 15px; /* Justera horisontell position */
+        }
+
+        .navbar-brand {
+            padding-left: 12%; /* Öka vänstermarginalen för navigationsmärket för att undvika att den täcker bilden */
+        }
+
+        @media (max-width: 992px) {
+            .logo-img {
+                width: 30%;
+            }
+
+            .navbar-brand {
+                padding-left: 40%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-img {
+                width: 40%;
+            }
+
+            .navbar-brand {
+                padding-left: 50%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-img {
+                width: 50%;
+            }
+
+            .navbar-brand {
+                padding-left: 60%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation-->
+<div th:replace="NavBar.html"></div>
+
+<!--innehåll -->
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Lägg beställning</h5>
+                    <p class="card-text">
+                        <strong>Antal varor: </strong> <span th:text="${cart.numberOfProducts}">Number</span><br>
+
+                        <strong>Totalt pris:</strong> <span th:text="${cart.getTotalPrice()} + ' kr'">TotalPrice</span>
+                    <h3>Välj betalsätt: </h3>
+
+                    <form id="placeOrderForm1" action="/placeOrder" method="post">
+                        <input type="hidden" name="paymentMethod" value="Swish">
+                        <button type="submit" class="btn btn-dark btn-sm w-100">Betala med Swish</button>
+                    </form>
+                    <hr>
+
+                    <form id="placeOrderForm2" action="/placeOrder" method="post">
+                        <input type="hidden" name="paymentMethod" value="Kontokort">
+                        <button type="submit" class="btn btn-dark btn-sm w-100">Betala med Kontokort</button>
+                    </form>
+                    <hr>
+
+                    <form id="placeOrderForm3" action="/placeOrder" method="post">
+                        <input type="hidden" name="paymentMethod" value="Hantverk">
+                        <button type="submit" class="btn btn-dark btn-sm w-100">Betala med Hantverk</button>
+                    </form>
+                </div>
+                </p>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Garn Galore AB 2024</p>
+    </div>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="../../../../../startbootstrap-shop-homepage-gh-pages/js/scripts.js"></script>
+<script>
+
+</script>
+
+</body>
+</html>
