@@ -1,5 +1,3 @@
-# grupp3JIN-IPL
-
 ## Projektbeskrivning
 Detta är projektarbetet för grupp 3 i kurserna JIN och IPL vid Campus Mölndal. Projektet syftar till att utveckla en webbapplikation som hanterar en e-handelsplattform som säljer garn, där användare kan utforska produkter, lägga till dem i en kundvagn, och genomföra köp.
 
